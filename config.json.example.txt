@@ -1,5 +1,7 @@
 {
     "token": "token",
     "prefix": "!",
-    "botname": " "
+    "botname": " ",
+    "channels": {
+	"general": "000"
 }
