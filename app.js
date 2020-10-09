@@ -33,7 +33,7 @@ fs.readdir('./commands/', (err, files) => {
         const pull = require(`./commands/${f}`);
         client.commands.set(pull.config.name, pull);
         pull.config.aliases.forEach((alias) => {
-            client.aliases.set(alis, pull.config.name);
+            client.aliases.set(alias, pull.config.name);
         });
     });
 });
