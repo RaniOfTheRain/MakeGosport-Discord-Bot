@@ -7,7 +7,7 @@ module.exports = async (client, message) => {
     const command = 
         message.content.startsWith(config.prefix) && 
         args.shift().slice(config.prefix.length).toLowerCase();
-
+    
     if (command) {
         const commandfile = 
             client.commands.get(command) || 

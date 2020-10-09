@@ -1,28 +1,28 @@
-const { DiscordAPIError, MessageEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const config = require('../config.json');
 
 module.exports.execute = async (client, message, args) => {
-    const discordChannel = args[0]; 
+    const messageID = args[0];
     const entirePhrase = args.join(' ');
     const userMessage = entirePhrase.substring(entirePhrase.indexOf(' ') + 1);
     const user = message.member;
-
 
     if (user.roles.cache.has(config.roles.admin)) {
         const botMessage = new MessageEmbed()
             .setColor('#fcbf0f')
             .setTitle('⚙️ Admin Message ⚙️')
-            .setDescription(userMessage)
-        client.channels.cache.get(discordChannel).send(botMessage);
-        //client.channels.cache.get(discordChannel).send(userMessage);
+            .setDescription(userMessage);
+        
+        console.log(message.channel.messages.cache.get(messageID))//.edit(userMessage);
+        message.delete(1500);
     } else {
         message.author.send('You do not have the admin role to use this command');
     };
 };
 
 module.exports.config = {
-    name: 'message',
-    aliases: ['message', 'send'],
-    description: 'Allows admins to send a message via the bot to a particular channel',
-    usage: ['message']
+    name: 'edit',
+    aliases: ['edit', 'change'],
+    description: 'Allows admins to edit a message sent via the bot in the same channel',
+    usage: ['edit']
 }
